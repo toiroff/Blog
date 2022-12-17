@@ -1,0 +1,35 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>UmarDev Blog</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Note+Sans+JP:wght@100&display=swap">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+</head>
+<body>
+    <header>
+        <h1><a href="{% url 'home' %}">UmarDev Blog</a></h1>
+    </header>
+    {% if user.is_authenticated %}
+        <p>Hush kelibsiz, {{ user.username }}</p>
+        <p><a href="{% url 'logout' %}">Log Out</a></p>
+    {% else %}
+    <p>
+        <A href="{% url 'login'%}">Saytga kirish (Sign In)</A></p>
+    <p>
+        <a href="{% url 'signup' %}">Ro'yhatdan O'tish (Sign Up)</a>
+    </p>
+
+    {% endif %}
+    <div>
+        {% block content %}
+        {% endblock content %}
+    </div>
+    <footer>
+        <h2> <a href="{% url 'post_new' %}">Write New Post</a> </h2>
+    </footer>
+</body>
+</html>
